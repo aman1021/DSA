@@ -38,7 +38,7 @@ BtNodes* takeinput(){
               pendingNodes.push(child);
           }
 
-          cout<< "Enter the lright child of "<< front->data<<endl;
+          cout<< "Enter the right child of "<<front->data<<endl;
           int rightchild;
           cin>>rightchild;
           if(rightchild!=-1){
@@ -79,13 +79,83 @@ bool isPresent(BtNodes* root, int k){
    }
     
 }
+//PRINT A BINARY TREE with Recursion
+void printTree(BtNodes* root){
+    if(root == NULL){
+        return;
+    }
+    cout << root->data << ":";
+    if(root->left!=NULL){
+        cout<<"L"<<root->left->data;
+    }
+    if(root->right!=NULL){
+        cout<<"L"<<root->right->data;
+    }
+    cout<<endl;
+    printTree(root->left);
+    printTree(root->right);
+}
+//print tree without RECURSION and LEVEL WISE.
+void print(BtNodes* root){
+    if(root == NULL){
+        return;
+    }
+    queue<BtNodes*> pendings;
+    pendings.push(root);
+    while(pendings.size()!=0){
+        BtNodes* front = pendings.front();
+        pendings.pop();
+        cout<< front->data << ":";
+        if(front->left!=NULL){
+            cout<<"L"<<front->left->data;
+            pendings.push(front->left);
+        }
+        if(front->right!=NULL){
+            cout<<"R"<<front->right->data;
+            pendings.push(front->right);
+        }
+        cout<<endl;
+    }
+}
+//INORDER TRAVERSAL
+void inorder(BtNodes* root){
+    if(root == NULL){
+        return;
+    }
+
+    inorder(root -> left);
+    cout<< root->data << " ";
+    inorder(root->right);
+}
+
+//PREORDER TRAVERSAL
+void preorder(BtNodes* root){
+    if(root == NULL){
+        return;
+    }
+    cout << root -> data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+void postorder(BtNodes * root){
+    if(root == NULL){
+         return;
+    }
+
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->data <<" ";
+}
 
 int main(){
     BtNodes* root = takeinput();
-    int s;
-    int H = height(root);
+    //int s;
+    //int H = height(root);
    /* cout << "Number to find "<< endl;
     cin>>s;
     bool yesorno = isPresent(root,s);*/
-    cout<< H<< endl;
+    //cout<< H<< endl;
+    //print(root);
+    postorder(root);
 }
