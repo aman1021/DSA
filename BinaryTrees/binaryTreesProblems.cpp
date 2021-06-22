@@ -1,7 +1,10 @@
+#include<bits/stdc++.h>
 #include<iostream>
 #include<queue>
 #include<algorithm>
 #include<utility>
+#include<algorithm>
+#include<climits>
 using namespace std;
 class BtNodes{
     public:
@@ -173,6 +176,18 @@ pair<int, int> heightDiameter(BtNodes* root){
 
     return p;
 }
+vector<int> v;
+void maxANDmin(BtNodes* root){
+    if(root == NULL){
+        return;
+    }
+         
+    v.push_back(root->data);
+    
+    maxANDmin(root->left);
+   
+    maxANDmin(root->right);
+}
 
 int main(){
     BtNodes* root = takeinput();
@@ -184,7 +199,14 @@ int main(){
     //cout<< H<< endl;
     //print(root);
     //postorder(root);
-    pair<int, int> p = heightDiameter(root);
-    cout<<"HEIGHT:" << p.first<< endl;
-    cout<<"DIAMETER:" << p.second<< endl;
+    //pair<int, int> p = heightDiameter(root);
+    //cout<<"HEIGHT:" << p.first<< endl;
+    //cout<<"DIAMETER:" << p.second<< endl;
+    maxANDmin(root);
+    int mx = INT_MIN;
+    for(int i = 0; i< v.size(); i++){
+        mx = max(mx, v.at(i));
+    }
+    
+    cout << "maximum:" << mx << endl;
 }
