@@ -188,6 +188,34 @@ void maxANDmin(BtNodes* root){
    
     maxANDmin(root->right);
 }
+//print level order traversal  this one is very important.
+void printLevelOrder(BtNodes* root){
+    if(root == NULL){
+        return;
+    }
+
+    queue<BtNodes*> q;
+    q.push(root);
+    q.push(NULL);
+
+    while(q.size()!=0){
+        BtNodes* front = q.front();
+        q.pop();
+        if(front!=NULL){
+            cout << front->data << " ";
+            if(front->left != NULL){
+                q.push(front->left);
+            }
+            if(front->right){
+                q.push(front-> right);
+            }
+        }
+        else if(q.size()!=0){
+            q.push(NULL);
+            cout<< endl;
+        }
+    }
+}
 
 int main(){
     BtNodes* root = takeinput();
@@ -202,11 +230,12 @@ int main(){
     //pair<int, int> p = heightDiameter(root);
     //cout<<"HEIGHT:" << p.first<< endl;
     //cout<<"DIAMETER:" << p.second<< endl;
-    maxANDmin(root);
+   /* maxANDmin(root);
     int mx = INT_MIN;
     for(int i = 0; i< v.size(); i++){
         mx = max(mx, v.at(i));
     }
     
-    cout << "maximum:" << mx << endl;
+    cout << "maximum:" << mx << endl;*/
+    printLevelOrder(root);
 }
