@@ -35,7 +35,7 @@ node * takeinput (){
     }
     cout<< "length = " << ans  <<endl;
     //printing the number at a particular index.
-    int i;
+    int i; // taking index which we want to print
     cin>>i;
     node* temp = head;
     int ans2;
